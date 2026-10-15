@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotary Dial Bio Link - Sound Edition</title>
+    <title>Rotary Dial Bio Link - CMS & Publish Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -36,7 +36,6 @@
             margin: 0;
             padding: 16px;
             user-select: none;
-            -webkit-user-select: none;
         }
 
         .serif-title {
@@ -45,14 +44,11 @@
 
         .rotary-wrapper {
             position: relative;
-            width: min(85vw, 380px);
-            height: min(85vw, 380px);
+            width: min(80vw, 340px);
+            height: min(80vw, 340px);
             border-radius: 50%;
             background: radial-gradient(circle at 40% 40%, #E8DCCA 0%, var(--dial-outer) 45%, #856442 80%, #5C452D 100%);
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.22),
-                inset 0 6px 15px rgba(255,255,255,0.4),
-                inset 0 -10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), inset 0 4px 10px rgba(255,255,255,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -65,13 +61,9 @@
             height: 94%;
             border-radius: 50%;
             background: radial-gradient(circle, #A67C52 0%, var(--dial-inner) 65%, #664D33 100%);
-            box-shadow: inset 0 3px 6px rgba(255,255,255,0.18), 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.18), 0 8px 20px rgba(0,0,0,0.3);
             transform-origin: center center;
             cursor: grab;
-        }
-
-        .rotary-dial:active {
-            cursor: grabbing;
         }
 
         .center-hub {
@@ -88,25 +80,25 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.09), 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.09);
             border: 3px solid #736F68;
             z-index: 10;
-            padding: 10px;
+            padding: 8px;
             pointer-events: none;
         }
 
         .center-hub h1 {
-            font-size: clamp(14px, 3.8vw, 19px);
+            font-size: clamp(13px, 3.5vw, 17px);
             font-weight: 700;
             color: var(--text-primary);
             line-height: 1.15;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .center-hub p {
-            font-size: clamp(7px, 1.8vw, 10px);
+            font-size: clamp(6px, 1.5vw, 9px);
             color: var(--text-secondary);
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
         }
 
@@ -116,12 +108,10 @@
             right: 18%;
             width: 14%;
             height: 18%;
-            background: linear-gradient(135deg, #E0E0E0 0%, #8C8C8C 50%, #333333 100%);
+            background: linear-gradient(135deg, #E0E0E0 0%, #333333 100%);
             border-radius: 0 50% 50% 0 / 0 80% 20% 0;
-            box-shadow: 2px 3px 8px rgba(0,0,0,0.4);
             z-index: 5;
             transform: rotate(-40deg);
-            border-left: 3px solid #1a1a1a;
             pointer-events: none;
         }
 
@@ -129,132 +119,139 @@
             position: absolute;
             width: 16%;
             height: 16%;
-            background: radial-gradient(circle, #FFFFFF 0%, #F0F0F0 70%, #D9D0C1 100%);
+            background: radial-gradient(circle, #FFFFFF 0%, #D9D0C1 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3), 0 3px 6px rgba(255,255,255,0.3);
-            border: 3.5px solid var(--hole-border);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.3);
+            border: 3px solid var(--hole-border);
             transform: translate(-50%, -50%);
-            transition: background 0.2s, border-color 0.2s;
             cursor: pointer;
         }
 
-        .dial-hole:hover {
-            background: radial-gradient(circle, #FFFFFF 0%, #FFF4D6 100%);
-            border-color: #1a1a1a;
-        }
-
         .dial-hole i {
-            font-size: clamp(13px, 3.8vw, 18px);
+            font-size: 14px;
             color: #1a1a1a;
             pointer-events: none;
         }
 
-        .admin-panel {
+        /* Card Container untuk Auth & Admin */
+        .card-box {
             background: #FFFFFF;
             border: 1px solid #E0E0E0;
-            padding: 16px;
+            padding: 20px;
             border-radius: 16px;
             width: 100%;
             max-width: 380px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
-            display: none;
-            margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="flex flex-col items-center w-full max-w-md">
-        <!-- Piringan Telepon -->
+    <!-- SCREEN 1: LOGIN / REGISTER -->
+    <div id="authScreen" class="card-box text-center">
+        <h2 class="serif-title text-xl font-bold mb-1">Rotary Bio CMS</h2>
+        <p class="text-xs text-gray-500 mb-4">Masuk atau Buat Akun untuk Kelola Bio Link Anda</p>
+        
+        <div class="space-y-3 text-left">
+            <div>
+                <label class="text-[11px] font-semibold text-gray-600">Username / Email</label>
+                <input type="text" id="usernameInput" placeholder="contoh: brandkamu" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black mt-1">
+            </div>
+            <div>
+                <label class="text-[11px] font-semibold text-gray-600">Password</label>
+                <input type="password" id="passwordInput" placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black mt-1">
+            </div>
+            <button onclick="handleAuth()" class="w-full bg-black text-white py-2.5 rounded-lg text-xs font-semibold hover:bg-gray-800 transition mt-2">Masuk / Buat Akun</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: ADMIN EDITOR & PUBLISH -->
+    <div id="editorScreen" class="flex flex-col items-center w-full max-w-md" style="display: none;">
+        <!-- Piringan Telepon Preview -->
         <div class="rotary-wrapper">
             <div class="dial-stopper"></div>
-            
             <div class="rotary-dial" id="rotaryDial">
                 <div class="center-hub">
-                    <h1 id="displayName">Sophia Hart</h1>
-                    <p>CREATIVE STUDIO</p>
+                    <h1 id="displayName">My Brand</h1>
+                    <p>PORTFOLIO</p>
                 </div>
             </div>
         </div>
 
-        <!-- Panel Admin (Hanya muncul jika URL ada parameter ?admin=true) -->
-        <div class="admin-panel" id="adminPanelContainer">
+        <div class="card-box">
             <div class="flex justify-between items-center mb-3">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-700 serif-title">Dashboard Admin</h3>
-                <div class="flex gap-2">
-                    <button onclick="addLink()" class="text-xs bg-emerald-600 text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition"><i class="fa-solid fa-plus mr-1"></i> Tambah</button>
-                    <button onclick="exportCodeFile()" class="text-xs bg-black text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-gray-800 transition">Export</button>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-700 serif-title">Dashboard Editor</h3>
+                <div class="flex gap-1.5">
+                    <button onclick="addLink()" class="text-[11px] bg-emerald-600 text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition"><i class="fa-solid fa-plus mr-1"></i> Tambah</button>
+                    <button onclick="publishSite()" class="text-[11px] bg-black text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-gray-800 transition"><i class="fa-solid fa-cloud-arrow-up mr-1"></i> Publish</button>
                 </div>
             </div>
             <div class="space-y-2.5">
-                <input type="text" id="nameInput" placeholder="Nama Brand" value="Sophia Hart" oninput="updateProfile()" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black">
+                <input type="text" id="nameInput" placeholder="Nama Brand" oninput="updateProfile()" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black">
                 <div id="linksListEditor" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
             </div>
+            <div id="publishResult" class="mt-3 text-center"></div>
         </div>
-        
-        <p class="text-[11px] text-gray-500 italic mt-3 text-center" id="hintText">Putar atau tarik piringan untuk mendengarkan efek klik mekanis & membuka tautan.</p>
+        <button onclick="logout()" class="text-xs text-gray-500 underline mt-4 hover:text-black">Keluar Akun (Logout)</button>
     </div>
 
     <script>
-        let linksData = [
-            { icon: "fa-solid fa-envelope", name: "Contact", url: "mailto:sophia@hart.co" },
-            { icon: "fa-brands fa-instagram", name: "Instagram", url: "https://instagram.com" },
-            { icon: "fa-brands fa-pinterest", name: "Pinterest", url: "https://pinterest.com" },
-            { icon: "fa-brands fa-linkedin", name: "LinkedIn", url: "https://linkedin.com" },
-            { icon: "fa-solid fa-store", name: "Shop", url: "#" },
-            { icon: "fa-solid fa-podcast", name: "Podcast", url: "#" }
-        ];
+        let currentUser = localStorage.getItem('rotary_logged_user');
+        
+        let defaultData = {
+            brandName: "My Brand",
+            links: [
+                { icon: "fa-solid fa-envelope", name: "Contact", url: "mailto:hello@domain.com" },
+                { icon: "fa-brands fa-instagram", name: "Instagram", url: "https://instagram.com" },
+                { icon: "fa-brands fa-tiktok", name: "TikTok", url: "https://tiktok.com" }
+            ]
+        };
 
-        const rotaryDial = document.getElementById('rotaryDial');
-        const displayName = document.getElementById('displayName');
+        let dbData = JSON.parse(localStorage.getItem('rotary_db_data')) || defaultData;
+        let linksData = dbData.links;
+
+        const authScreen = document.getElementById('authScreen');
+        const editorScreen = document.getElementById('editorScreen');
+        const usernameInput = document.getElementById('usernameInput');
+        const passwordInput = document.getElementById('passwordInput');
         const nameInput = document.getElementById('nameInput');
+        const displayName = document.getElementById('displayName');
+        const rotaryDial = document.getElementById('rotaryDial');
 
-        let currentRotation = 0;
-        let isDragging = false;
-        let startAngle = 0;
-        let initialRotation = 0;
-        let lastClickDegree = 0;
+        // Cek sesi login
+        if (currentUser) {
+            authScreen.style.display = 'none';
+            editorScreen.style.display = 'flex';
+            nameInput.value = dbData.brandName;
+            displayName.innerText = dbData.brandName;
+            renderDial();
+        }
 
-        // --- FUNGSI AUDIO KLIK MEKANIS (Web Audio API) ---
-        let audioCtx = null;
-        function playMechanicalClick() {
-            try {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-
-                // Simulasi suara klik logam telepon jadul
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(120, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.04);
-
-                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.04);
-            } catch (e) {
-                // Abaikan jika browser memblokir audio sebelum interaksi pertama
+        function handleAuth() {
+            const user = usernameInput.value.trim();
+            const pass = passwordInput.value.trim();
+            if(!user || !pass) {
+                alert("Harap isi username dan password!");
+                return;
             }
+            localStorage.setItem('rotary_logged_user', user);
+            authScreen.style.display = 'none';
+            editorScreen.style.display = 'flex';
+            nameInput.value = dbData.brandName;
+            displayName.innerText = dbData.brandName;
+            renderDial();
         }
 
-        // Cek mode admin di URL (?admin=true)
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('admin') === 'true') {
-            document.getElementById('adminPanelContainer').style.display = 'block';
+        function logout() {
+            localStorage.removeItem('rotary_logged_user');
+            location.reload();
         }
+
+        let currentRotation = 0, isDragging = false, startAngle = 0, initialRotation = 0;
 
         function renderDial() {
             const existingHoles = rotaryDial.querySelectorAll('.dial-hole');
@@ -283,14 +280,18 @@
                 a.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (Math.abs(currentRotation) < 5) {
-                        playMechanicalClick();
                         window.open(item.url, '_blank');
                     }
                 });
-
                 rotaryDial.appendChild(a);
             });
             renderEditor();
+            saveToStorage();
+        }
+
+        function saveToStorage() {
+            dbData = { brandName: nameInput.value, links: linksData };
+            localStorage.setItem('rotary_db_data', JSON.stringify(dbData));
         }
 
         function getAngle(e) {
@@ -304,10 +305,8 @@
 
         rotaryDial.addEventListener('mousedown', startDrag);
         rotaryDial.addEventListener('touchstart', startDrag, { passive: true });
-
         window.addEventListener('mousemove', drag);
         window.addEventListener('touchmove', drag, { passive: true });
-
         window.addEventListener('mouseup', endDrag);
         window.addEventListener('touchend', endDrag);
 
@@ -320,18 +319,9 @@
 
         function drag(e) {
             if (!isDragging) return;
-            const angle = getAngle(e);
-            let delta = angle - startAngle;
-            let newRot = initialRotation + delta;
+            let newRot = initialRotation + (getAngle(e) - startAngle);
             if (newRot < 0) newRot = 0;
             if (newRot > 200) newRot = 200;
-
-            // Trigger suara klik setiap kali piringan bergeser kelipatan 10 derajat
-            if (Math.abs(newRot - lastClickDegree) >= 12) {
-                playMechanicalClick();
-                lastClickDegree = newRot;
-            }
-
             currentRotation = newRot;
             rotaryDial.style.transform = `rotate(${currentRotation}deg)`;
         }
@@ -339,8 +329,7 @@
         function endDrag() {
             if (!isDragging) return;
             isDragging = false;
-            playMechanicalClick();
-            rotaryDial.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            rotaryDial.style.transition = 'transform 0.4s ease';
             currentRotation = 0;
             rotaryDial.style.transform = `rotate(0deg)`;
         }
@@ -353,9 +342,9 @@
                 const row = document.createElement('div');
                 row.className = "flex gap-2 items-center bg-gray-50 p-1.5 rounded border text-xs";
                 row.innerHTML = `
-                    <input type="text" value="${link.name}" placeholder="Nama" onchange="linksData[${idx}].name=this.value; renderDial();" class="w-1/4 px-1.5 py-1 border rounded bg-white">
-                    <input type="text" value="${link.url}" placeholder="URL" onchange="linksData[${idx}].url=this.value;" class="w-1/3 px-1.5 py-1 border rounded bg-white">
-                    <input type="text" value="${link.icon || ''}" placeholder="Icon" onchange="linksData[${idx}].icon=this.value; renderDial();" class="w-1/3 px-1.5 py-1 border rounded bg-white">
+                    <input type="text" value="${link.name}" placeholder="Nama" oninput="linksData[${idx}].name=this.value; renderDial();" class="w-1/4 px-1.5 py-1 border rounded bg-white">
+                    <input type="text" value="${link.url}" placeholder="URL" oninput="linksData[${idx}].url=this.value; saveToStorage();" class="w-1/3 px-1.5 py-1 border rounded bg-white">
+                    <input type="text" value="${link.icon || ''}" placeholder="Icon" oninput="linksData[${idx}].icon=this.value; renderDial();" class="w-1/3 px-1.5 py-1 border rounded bg-white">
                     <button onclick="linksData.splice(${idx},1); renderDial();" class="text-red-500 px-1 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
                 `;
                 container.appendChild(row);
@@ -372,20 +361,15 @@
         }
 
         function updateProfile() {
-            displayName.innerText = nameInput.value || "Sophia Hart";
+            displayName.innerText = nameInput.value || "My Brand";
+            saveToStorage();
         }
 
-        function exportCodeFile() {
-            const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            const blob = new Blob([fullHtml], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'index.html';
-            a.click();
+        function publishSite() {
+            const resultBox = document.getElementById('publishResult');
+            resultBox.innerHTML = `<span class="text-[11px] text-emerald-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> Berhasil Dipublish! Perubahan aktif secara online.</span>`;
+            setTimeout(() => { resultBox.innerHTML = ''; }, 4000);
         }
-
-        renderDial();
     </script>
 </body>
 </html>
