@@ -3,243 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotary Dial Bio Link - Perfect Centered Edition</title>
+    <title>Rotary Dial Bio Link - Sound Edition</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #FAF7F0;
+            --dial-outer: #A67C52;
+            --dial-inner: #8C6A46;
+            --center-hub: #F5EFE1;
+            --hole-border: #4D4D4D;
+            --text-primary: #2A2A2A;
+            --text-secondary: #736F68;
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f7f5f0;
-            color: #1a1a1a;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
-            padding: 20px;
+            margin: 0;
+            padding: 16px;
+            user-select: none;
+            -webkit-user-select: none;
         }
+
         .serif-title {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Wrapper Piringan Telepon Center */
         .rotary-wrapper {
             position: relative;
-            width: 400px;
-            height: 400px;
+            width: min(85vw, 380px);
+            height: min(85vw, 380px);
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #e4e4e4 0%, #b8b8b8 40%, #7d7d7d 80%, #4a4a4a 100%);
+            background: radial-gradient(circle at 40% 40%, #E8DCCA 0%, var(--dial-outer) 45%, #856442 80%, #5C452D 100%);
             box-shadow: 
-                0 30px 60px rgba(0,0,0,0.2),
-                inset 0 4px 12px rgba(255,255,255,0.7),
-                inset 0 -10px 20px rgba(0,0,0,0.5);
+                0 25px 50px rgba(0,0,0,0.22),
+                inset 0 6px 15px rgba(255,255,255,0.4),
+                inset 0 -10px 30px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 20px;
         }
 
-        /* Piringan Putar Dalam */
         .rotary-dial {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 94%;
+            height: 94%;
             border-radius: 50%;
-            background: radial-gradient(circle, #bcbcbc 0%, #9e9e9e 65%, #595959 100%);
-            box-shadow: inset 0 3px 8px rgba(255,255,255,0.25), 0 8px 25px rgba(0,0,0,0.25);
-            transition: transform 0.7s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+            background: radial-gradient(circle, #A67C52 0%, var(--dial-inner) 65%, #664D33 100%);
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.18), 0 10px 30px rgba(0,0,0,0.3);
             transform-origin: center center;
+            cursor: grab;
         }
 
-        /* Poros Tengah (Center Hub) */
+        .rotary-dial:active {
+            cursor: grabbing;
+        }
+
         .center-hub {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 160px;
-            height: 160px;
-            background: radial-gradient(circle, #fffefb 0%, #f4f0ea 70%, #ded7cb 100%);
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, var(--center-hub) 0%, #E8E3D4 100%);
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.12), 0 6px 15px rgba(0,0,0,0.15);
-            border: 4px solid #555;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.09), 0 8px 20px rgba(0,0,0,0.15);
+            border: 3px solid #736F68;
             z-index: 10;
-            padding: 12px;
+            padding: 10px;
+            pointer-events: none;
         }
 
         .center-hub h1 {
-            font-size: 18px;
+            font-size: clamp(14px, 3.8vw, 19px);
             font-weight: 700;
-            color: #111;
+            color: var(--text-primary);
             line-height: 1.15;
             margin-bottom: 3px;
         }
 
         .center-hub p {
-            font-size: 9px;
-            color: #666;
-            letter-spacing: 2px;
+            font-size: clamp(7px, 1.8vw, 10px);
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        /* Tuas Stopper Melengkung di Kanan Bawah */
         .dial-stopper {
             position: absolute;
-            bottom: 32px;
-            right: 48px;
-            width: 35px;
-            height: 45px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #9e9e9e 50%, #5e5e5e 100%);
+            bottom: 14%;
+            right: 18%;
+            width: 14%;
+            height: 18%;
+            background: linear-gradient(135deg, #E0E0E0 0%, #8C8C8C 50%, #333333 100%);
             border-radius: 0 50% 50% 0 / 0 80% 20% 0;
-            box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 2px 3px 8px rgba(0,0,0,0.4);
             z-index: 5;
-            transform: rotate(-35deg);
-            border-left: 2px solid #444;
+            transform: rotate(-40deg);
+            border-left: 3px solid #1a1a1a;
             pointer-events: none;
         }
 
-        /* Tombol Cekung Lingkaran */
         .dial-hole {
             position: absolute;
-            width: 56px;
-            height: 56px;
-            background: radial-gradient(circle, #ffffff 0%, #f2f2f2 75%, #d1cbbd 100%);
+            width: 16%;
+            height: 16%;
+            background: radial-gradient(circle, #FFFFFF 0%, #F0F0F0 70%, #D9D0C1 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(255, 255, 255, 0.4);
-            border: 3px solid #5e5e5e;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.3), 0 3px 6px rgba(255,255,255,0.3);
+            border: 3.5px solid var(--hole-border);
             transform: translate(-50%, -50%);
-            transition: all 0.25s ease;
+            transition: background 0.2s, border-color 0.2s;
             cursor: pointer;
-            text-decoration: none;
         }
 
         .dial-hole:hover {
-            background: radial-gradient(circle, #ffffff 0%, #fff8e8 100%);
-            border-color: #222;
-            transform: translate(-50%, -50%) scale(1.08);
+            background: radial-gradient(circle, #FFFFFF 0%, #FFF4D6 100%);
+            border-color: #1a1a1a;
         }
 
         .dial-hole i {
-            font-size: 18px;
+            font-size: clamp(13px, 3.8vw, 18px);
             color: #1a1a1a;
+            pointer-events: none;
         }
 
-        /* Panel Admin */
         .admin-panel {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            border-radius: 14px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            padding: 16px;
+            border-radius: 16px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-top: 25px;
+            max-width: 380px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            display: none;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="flex flex-col items-center">
-        <!-- Frame Piringan Telepon Center -->
+    <div class="flex flex-col items-center w-full max-w-md">
+        <!-- Piringan Telepon -->
         <div class="rotary-wrapper">
             <div class="dial-stopper"></div>
             
             <div class="rotary-dial" id="rotaryDial">
-                <!-- Poros Tengah / Label Nama -->
                 <div class="center-hub">
-                    <h1 id="displayName">Anna Noelle</h1>
-                    <p>PORTFOLIO</p>
+                    <h1 id="displayName">Sophia Hart</h1>
+                    <p>CREATIVE STUDIO</p>
                 </div>
-                <!-- Tombol Tautan -->
             </div>
         </div>
 
-        <!-- Panel Admin & Kustomisasi -->
-        <div class="admin-panel">
+        <!-- Panel Admin (Hanya muncul jika URL ada parameter ?admin=true) -->
+        <div class="admin-panel" id="adminPanelContainer">
             <div class="flex justify-between items-center mb-3">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-700">Admin Panel</h3>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-700 serif-title">Dashboard Admin</h3>
                 <div class="flex gap-2">
-                    <button onclick="addLink()" class="text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition"><i class="fa-solid fa-plus mr-1"></i> Add Link</button>
-                    <button onclick="exportCodeFile()" class="text-xs bg-black text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-gray-800 transition">Export HTML</button>
+                    <button onclick="addLink()" class="text-xs bg-emerald-600 text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-emerald-700 transition"><i class="fa-solid fa-plus mr-1"></i> Tambah</button>
+                    <button onclick="exportCodeFile()" class="text-xs bg-black text-white px-2.5 py-1.5 rounded-lg font-semibold hover:bg-gray-800 transition">Export</button>
                 </div>
             </div>
-            <div class="space-y-3">
-                <input type="text" id="nameInput" placeholder="Nama Brand" value="Anna Noelle" oninput="updateProfile()" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black">
-                <div id="linksListEditor" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
+            <div class="space-y-2.5">
+                <input type="text" id="nameInput" placeholder="Nama Brand" value="Sophia Hart" oninput="updateProfile()" class="w-full px-3 py-2 border rounded-lg text-xs bg-gray-50 focus:outline-none focus:border-black">
+                <div id="linksListEditor" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
             </div>
         </div>
+        
+        <p class="text-[11px] text-gray-500 italic mt-3 text-center" id="hintText">Putar atau tarik piringan untuk mendengarkan efek klik mekanis & membuka tautan.</p>
     </div>
 
     <script>
-        // Data Tautan & Ikon (Bisa ditambah/hapus)
         let linksData = [
-            { icon: "fa-solid fa-envelope", name: "Contact", url: "mailto:hello@example.com" },
+            { icon: "fa-solid fa-envelope", name: "Contact", url: "mailto:sophia@hart.co" },
             { icon: "fa-brands fa-instagram", name: "Instagram", url: "https://instagram.com" },
-            { icon: "fa-brands fa-tiktok", name: "TikTok", url: "https://tiktok.com" },
-            { icon: "fa-brands fa-shopify", name: "Shop", url: "https://shopify.com" },
-            { icon: "fa-brands fa-behance", name: "Portfolio", url: "https://behance.net" }
+            { icon: "fa-brands fa-pinterest", name: "Pinterest", url: "https://pinterest.com" },
+            { icon: "fa-brands fa-linkedin", name: "LinkedIn", url: "https://linkedin.com" },
+            { icon: "fa-solid fa-store", name: "Shop", url: "#" },
+            { icon: "fa-solid fa-podcast", name: "Podcast", url: "#" }
         ];
 
         const rotaryDial = document.getElementById('rotaryDial');
         const displayName = document.getElementById('displayName');
         const nameInput = document.getElementById('nameInput');
 
+        let currentRotation = 0;
+        let isDragging = false;
+        let startAngle = 0;
+        let initialRotation = 0;
+        let lastClickDegree = 0;
+
+        // --- FUNGSI AUDIO KLIK MEKANIS (Web Audio API) ---
+        let audioCtx = null;
+        function playMechanicalClick() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                // Simulasi suara klik logam telepon jadul
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.04);
+
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch (e) {
+                // Abaikan jika browser memblokir audio sebelum interaksi pertama
+            }
+        }
+
+        // Cek mode admin di URL (?admin=true)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') === 'true') {
+            document.getElementById('adminPanelContainer').style.display = 'block';
+        }
+
         function renderDial() {
             const existingHoles = rotaryDial.querySelectorAll('.dial-hole');
             existingHoles.forEach(el => el.remove());
 
             const total = linksData.length;
-            const radius = 128; // Jarak pas dari pusat ke lingkaran tombol
+            const radiusPercent = 38;
 
             linksData.forEach((item, index) => {
-                // Posisi melingkar proporsional di sisi kiri & bawah piringan
-                const startAngle = -Math.PI * 1.12;
-                const endAngle = Math.PI * 0.12;
-                const angle = total === 1 ? -Math.PI / 2 : startAngle + (index / (total - 1)) * (endAngle - startAngle);
+                const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
+                const x = 50 + radiusPercent * Math.cos(angle);
+                const y = 50 + radiusPercent * Math.sin(angle);
 
-                // Titik tengah piringan 400px adalah 200px
-                const x = 200 + radius * Math.cos(angle);
-                const y = 200 + radius * Math.sin(angle);
-
-                const a = document.createElement('a');
+                const a = document.createElement('div');
                 a.className = 'dial-hole';
-                a.href = item.url;
-                a.target = "_blank";
-                a.style.left = `${x}px`;
-                a.style.top = `${y}px`;
+                a.style.left = `${x}%`;
+                a.style.top = `${y}%`;
                 a.title = item.name;
                 
-                // Jika ikon diisi, tampilkan ikon. Jika kosong, tampilkan inisial/titik bersih
                 if (item.icon && item.icon.trim() !== "") {
                     a.innerHTML = `<i class="${item.icon}"></i>`;
                 } else {
                     a.innerHTML = `<span class="text-xs font-bold text-gray-700">${item.name ? item.name.charAt(0) : ''}</span>`;
                 }
                 
-                // Animasi putar mekanis saat diklik
                 a.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetRotation = 45 - (index * 15);
-                    rotaryDial.style.transform = `rotate(${targetRotation}deg)`;
-                    
-                    setTimeout(() => {
+                    e.stopPropagation();
+                    if (Math.abs(currentRotation) < 5) {
+                        playMechanicalClick();
                         window.open(item.url, '_blank');
-                        setTimeout(() => {
-                            rotaryDial.style.transform = `rotate(0deg)`;
-                        }, 400);
-                    }, 350);
+                    }
                 });
 
                 rotaryDial.appendChild(a);
@@ -247,25 +293,78 @@
             renderEditor();
         }
 
+        function getAngle(e) {
+            const rect = rotaryDial.getBoundingClientRect();
+            const centerx = rect.left + rect.width / 2;
+            const centery = rect.top + rect.height / 2;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return Math.atan2(clientY - centery, clientX - centerx) * (180 / Math.PI);
+        }
+
+        rotaryDial.addEventListener('mousedown', startDrag);
+        rotaryDial.addEventListener('touchstart', startDrag, { passive: true });
+
+        window.addEventListener('mousemove', drag);
+        window.addEventListener('touchmove', drag, { passive: true });
+
+        window.addEventListener('mouseup', endDrag);
+        window.addEventListener('touchend', endDrag);
+
+        function startDrag(e) {
+            isDragging = true;
+            startAngle = getAngle(e);
+            initialRotation = currentRotation;
+            rotaryDial.style.transition = 'none';
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            const angle = getAngle(e);
+            let delta = angle - startAngle;
+            let newRot = initialRotation + delta;
+            if (newRot < 0) newRot = 0;
+            if (newRot > 200) newRot = 200;
+
+            // Trigger suara klik setiap kali piringan bergeser kelipatan 10 derajat
+            if (Math.abs(newRot - lastClickDegree) >= 12) {
+                playMechanicalClick();
+                lastClickDegree = newRot;
+            }
+
+            currentRotation = newRot;
+            rotaryDial.style.transform = `rotate(${currentRotation}deg)`;
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            playMechanicalClick();
+            rotaryDial.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            currentRotation = 0;
+            rotaryDial.style.transform = `rotate(0deg)`;
+        }
+
         function renderEditor() {
             const container = document.getElementById('linksListEditor');
+            if (!container) return;
             container.innerHTML = '';
             linksData.forEach((link, idx) => {
                 const row = document.createElement('div');
-                row.className = "flex gap-2 items-center bg-gray-50 p-2 rounded border";
+                row.className = "flex gap-2 items-center bg-gray-50 p-1.5 rounded border text-xs";
                 row.innerHTML = `
-                    <input type="text" value="${link.name}" placeholder="Nama" onchange="linksData[${idx}].name=this.value; renderDial();" class="w-1/4 px-2 py-1 border rounded text-xs bg-white">
-                    <input type="text" value="${link.url}" placeholder="URL" onchange="linksData[${idx}].url=this.value;" class="w-1/3 px-2 py-1 border rounded text-xs bg-white">
-                    <input type="text" value="${link.icon || ''}" placeholder="Icon (fa-solid fa-...)" onchange="linksData[${idx}].icon=this.value; renderDial();" class="w-1/3 px-2 py-1 border rounded text-xs bg-white">
-                    <button onclick="linksData.splice(${idx},1); renderDial();" class="text-red-500 text-xs px-1 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                    <input type="text" value="${link.name}" placeholder="Nama" onchange="linksData[${idx}].name=this.value; renderDial();" class="w-1/4 px-1.5 py-1 border rounded bg-white">
+                    <input type="text" value="${link.url}" placeholder="URL" onchange="linksData[${idx}].url=this.value;" class="w-1/3 px-1.5 py-1 border rounded bg-white">
+                    <input type="text" value="${link.icon || ''}" placeholder="Icon" onchange="linksData[${idx}].icon=this.value; renderDial();" class="w-1/3 px-1.5 py-1 border rounded bg-white">
+                    <button onclick="linksData.splice(${idx},1); renderDial();" class="text-red-500 px-1 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
                 `;
                 container.appendChild(row);
             });
         }
 
         function addLink() {
-            if (linksData.length >= 7) {
-                alert("Maksimal 7 tautan agar piringan tetap proporsional.");
+            if (linksData.length >= 8) {
+                alert("Maksimal 8 tautan.");
                 return;
             }
             linksData.push({ icon: "fa-solid fa-link", name: "Baru", url: "https://" });
@@ -273,7 +372,7 @@
         }
 
         function updateProfile() {
-            displayName.innerText = nameInput.value || "Nama";
+            displayName.innerText = nameInput.value || "Sophia Hart";
         }
 
         function exportCodeFile() {
@@ -282,7 +381,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'rotary_bio_perfect.html';
+            a.download = 'index.html';
             a.click();
         }
 
